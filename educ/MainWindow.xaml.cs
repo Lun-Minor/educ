@@ -38,6 +38,7 @@ namespace educ
             }
 
             MessageBox.Show(text, "успех", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
     }
 }
