@@ -92,9 +92,7 @@ namespace educ
             return Core.context.Books.OrderByDescending(b => b.AverageRating).ToList();
         }
 
-        public List<Books> FilterBooksByGenres(string Text) {
-            return Core.context.Books.Where(b => b.Genres.Contains(Text)).ToList();
-        }
+      
 
     }
 }
