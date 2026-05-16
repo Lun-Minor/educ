@@ -15,13 +15,15 @@ namespace educ
     public partial class UnfreezeRequests
     {
         public int Id { get; set; }
-        public int Type { get; set; }
-        public int TargetId { get; set; }
+        public Nullable<int> UnfreezeUserId { get; set; }
+        public Nullable<int> UnfreezeBookId { get; set; }
         public int UserId { get; set; }
         public string Reason { get; set; }
         public int Status { get; set; }
         public System.DateTime CreatedAt { get; set; }
     
+        public virtual Books Books { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Users Users1 { get; set; }
     }
 }

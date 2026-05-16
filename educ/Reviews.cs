@@ -14,6 +14,12 @@ namespace educ
     
     public partial class Reviews
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Reviews()
+        {
+            this.Complaints = new HashSet<Complaints>();
+        }
+    
         public int Id { get; set; }
         public int BookId { get; set; }
         public int UserId { get; set; }
@@ -23,6 +29,8 @@ namespace educ
         public bool IsFrozen { get; set; }
     
         public virtual Books Books { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Complaints> Complaints { get; set; }
         public virtual Users Users { get; set; }
     }
 }

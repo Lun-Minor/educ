@@ -15,15 +15,19 @@ namespace educ
     public partial class Complaints
     {
         public int Id { get; set; }
-        public int Type { get; set; }
-        public int TargetId { get; set; }
+        public Nullable<int> ComplaintsUserId { get; set; }
         public int UserId { get; set; }
         public string Reason { get; set; }
         public int Status { get; set; }
         public System.DateTime CreatedAt { get; set; }
-        public Nullable<int> ProcessedBy { get; set; }
+        public Nullable<int> ProcessedById { get; set; }
         public Nullable<System.DateTime> ProcessedDate { get; set; }
+        public Nullable<int> ComplaintsBookId { get; set; }
+        public Nullable<int> ComplaintsReviewId { get; set; }
     
+        public virtual Books Books { get; set; }
+        public virtual Reviews Reviews { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Users Users1 { get; set; }
     }
 }

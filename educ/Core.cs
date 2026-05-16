@@ -8,6 +8,6 @@ namespace educ
 {
     public class Core
     {
-        public static Book_platform_11 context = new Book_platform_11();
+        public static BookPlatform_11 context = new BookPlatform_11();
     }
 }

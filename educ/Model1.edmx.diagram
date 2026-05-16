@@ -4,23 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e77b8d43911243329d6f3c3b13883755" Name="Diagram1" ZoomLevel="98">
-        <EntityTypeShape EntityType="BookPlatform_11Model.AuthorRequests" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatform_11Model.Books" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatform_11Model.Complaints" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatform_11Model.Genres" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatform_11Model.ReadingList" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatform_11Model.Reviews" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+      <Diagram DiagramId="05c838efa25b4ff1b1caecdb53479c8b" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="BookPlatform_11Model.AuthorRequests" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookPlatform_11Model.Books" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookPlatform_11Model.Complaints" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookPlatform_11Model.Genres" Width="1.5" PointX="5.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookPlatform_11Model.ReadingList" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookPlatform_11Model.Reviews" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BookPlatform_11Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatform_11Model.UnfreezeRequests" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookPlatform_11Model.Users" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookPlatform_11Model.UnfreezeRequests" Width="1.5" PointX="8.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookPlatform_11Model.Users" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
         <AssociationConnector Association="BookPlatform_11Model.FK_AuthorRequests_Users" ManuallyRouted="false" />
         <AssociationConnector Association="BookPlatform_11Model.FK_Books_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BookPlatform_11Model.FK_Complaints_Books" ManuallyRouted="false" />
         <AssociationConnector Association="BookPlatform_11Model.FK_ReadingList_Books" ManuallyRouted="false" />
         <AssociationConnector Association="BookPlatform_11Model.FK_Reviews_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="BookPlatform_11Model.FK_UnfreezeRequests_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="BookPlatform_11Model.FK_Complaints_Reviews" ManuallyRouted="false" />
         <AssociationConnector Association="BookPlatform_11Model.FK_Complaints_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BookPlatform_11Model.FK_Complaints_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="BookPlatform_11Model.FK_ReadingList_Users" ManuallyRouted="false" />
         <AssociationConnector Association="BookPlatform_11Model.FK_Reviews_Users" ManuallyRouted="false" />
         <AssociationConnector Association="BookPlatform_11Model.FK_UnfreezeRequests_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BookPlatform_11Model.FK_UnfreezeRequests_Users1" ManuallyRouted="false" />
         <AssociationConnector Association="BookPlatform_11Model.BookGenres" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

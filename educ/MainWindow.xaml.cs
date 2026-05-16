@@ -25,20 +25,6 @@ namespace educ
             InitializeComponent();
         }
 
-        private void testbutton_Click(object sender, RoutedEventArgs e)
-        {
-            var data = new DataFromSql();
-            var books = data.GetAllBooks();
-
-            string text = $"books {books.Count}\n";
-
-            foreach (var g in books)
-            {
-                text += $" {g.Id} - {g.Title}\n";
-            }
-
-            MessageBox.Show(text, "успех", MessageBoxButton.OK, MessageBoxImage.Information);
-
-        }
+        
     }
 }

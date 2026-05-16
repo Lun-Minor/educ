@@ -13,10 +13,10 @@ namespace educ
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Book_platform_11 : DbContext
+    public partial class BookPlatform_11 : DbContext
     {
-        public Book_platform_11()
-            : base("name=Book_platform_11")
+        public BookPlatform_11()
+            : base("name=BookPlatform_11")
         {
         }
     

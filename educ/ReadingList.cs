@@ -21,5 +21,6 @@ namespace educ
         public System.DateTime AddedDate { get; set; }
     
         public virtual Books Books { get; set; }
+        public virtual Users Users { get; set; }
     }
 }
