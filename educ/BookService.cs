@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Сервис для работы с книгами
+/// </summary>
 namespace educ
 {
     public class BookService

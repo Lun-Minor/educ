@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-
+/// <summary>
+/// Сервис для работы с жалобами
+/// </summary>
 namespace educ
 {
 
