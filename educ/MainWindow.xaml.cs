@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace educ
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -25,6 +23,24 @@ namespace educ
             InitializeComponent();
         }
 
-        
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            StartScreen.Visibility = Visibility.Collapsed;
+            MainFrame.Visibility = Visibility.Visible;
+            MainFrame.Navigate(new LoginPage());
+        }
+
+        private void BtnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            StartScreen.Visibility = Visibility.Collapsed;
+            MainFrame.Visibility = Visibility.Visible;
+            MainFrame.Navigate(new RegisterPage());
+        }
+
+        public void GoBackToStart()
+        {
+            MainFrame.Visibility = Visibility.Collapsed;
+            StartScreen.Visibility = Visibility.Visible;
+        }
     }
 }

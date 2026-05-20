@@ -7,9 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-      
 
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
 
         
+        <Grid x:Name="StartScreen" >
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="420">
+
+                <TextBlock Text="ШутИКроль" FontSize="48" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+
+                <Button Content="Войти" Height="65" FontSize="30" Margin="10" Background="#60C2E2" Foreground="White" Click="BtnLogin_Click"/>
+
+                <Button Content="Зарегистрироваться" Height="65" FontSize="30" Margin="10" Background="#38A803" Foreground="White" Click="BtnRegister_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
