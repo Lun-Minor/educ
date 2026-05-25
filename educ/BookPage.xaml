@@ -7,6 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1100"
       Title="BookPage">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+    </Page.Resources>
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -14,55 +17,61 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        
+
         <Border Grid.Column="0" Background="White" Width="100">
             <StackPanel Margin="5">
                 <TextBlock Text="ШутИКроль" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
 
-                <Button Width="35" Height="35" Background="White" BorderThickness="0" Margin="5" 
-                        ToolTipService.ShowDuration="5000" Click="BtnCatalog_Click">
+               
+                <Button Width="35" Height="35" Background="White" BorderThickness="0" Margin="5"
+                ToolTipService.ShowDuration="5000" Click="BtnCatalog_Click">
                     <Image Source="https://i.pinimg.com/736x/98/dc/ee/98dcee92ed4314b979c7d09de33a95c3.jpg" Width="32" Height="32"/>
                     <Button.ToolTip>
                         <ToolTip Content="Каталог книг" />
                     </Button.ToolTip>
                 </Button>
 
-                        <Button Width="35" Height="35" Background="White" Margin="5" BorderThickness="0" 
-                        ToolTipService.ShowDuration="5000" Click="BtnReadingLists_Click">
+              
+                <Button Width="35" Height="35" Background="White" Margin="5" BorderThickness="0"
+                ToolTipService.ShowDuration="5000" Click="BtnReadingLists_Click">
                     <Image Source="https://i.pinimg.com/736x/36/f2/7c/36f27c33c629c40f81f00ccb972a3e03.jpg" Width="32" Height="32"/>
                     <Button.ToolTip>
                         <ToolTip Content="Мои списки" />
                     </Button.ToolTip>
                 </Button>
 
-                <Button Width="35" Height="35" Background="White" Margin="5" BorderThickness="0" 
-                        ToolTipService.ShowDuration="5000" Click="BtnMyBooks_Click" 
-                        Visibility="{Binding IsAuthorVisible}">
+                
+                <Button Width="35" Height="35" Background="White" Margin="5" BorderThickness="0"
+                ToolTipService.ShowDuration="5000" Click="BtnMyBooks_Click"
+                Visibility="{Binding IsAuthorVisible, RelativeSource={RelativeSource AncestorType=Page}}">
                     <Image Source="https://i.pinimg.com/736x/61/c4/b8/61c4b8112ec61cb61044372324319e3d.jpg" Width="32" Height="32"/>
                     <Button.ToolTip>
                         <ToolTip Content="Мои книги" />
                     </Button.ToolTip>
                 </Button>
 
-                <Button Width="35" Height="35" Margin="5" Background="White" BorderThickness="0" 
-                        ToolTipService.ShowDuration="5000" Click="BtnAdmin_Click"
-                        Visibility="{Binding IsAdminVisible}">
+                
+                <Button Width="35" Height="35" Margin="5" Background="White" BorderThickness="0"
+                ToolTipService.ShowDuration="5000" Click="BtnAdmin_Click"
+                Visibility="{Binding IsAdminVisible, RelativeSource={RelativeSource AncestorType=Page}}">
                     <Image Source="https://i.pinimg.com/736x/8d/e0/de/8de0de491f34410526c83c8b1a7c62dc.jpg" Width="32" Height="32"/>
                     <Button.ToolTip>
                         <ToolTip Content="Администрирование" />
                     </Button.ToolTip>
                 </Button>
 
-                <Button Width="35" Height="35" Margin="5" Background="White" BorderThickness="0" 
-                        ToolTipService.ShowDuration="5000" Click="BtnProfile_Click">
+          
+                <Button Width="35" Height="35" Margin="5" Background="White" BorderThickness="0"
+                ToolTipService.ShowDuration="5000" Click="BtnProfile_Click">
                     <Image Source="https://i.pinimg.com/736x/fb/f3/9d/fbf39d8bc1ef7534ecb4144440533a8f.jpg" Width="32" Height="32"/>
                     <Button.ToolTip>
                         <ToolTip Content="Профиль" />
                     </Button.ToolTip>
                 </Button>
 
-                <Button Width="35" Height="35" Background="White" BorderThickness="0" 
-                        ToolTipService.ShowDuration="5000" Click="BtnLogout_Click" Margin="5">
+            
+                <Button Width="35" Height="35" Background="White" BorderThickness="0"
+                ToolTipService.ShowDuration="5000" Click="BtnLogout_Click" Margin="5">
                     <Image Source="https://i.pinimg.com/1200x/06/8f/71/068f711557f3e8f709f61783dea39212.jpg" Width="32" Height="32"/>
                     <Button.ToolTip>
                         <ToolTip Content="Выйти" />
@@ -71,7 +80,6 @@
             </StackPanel>
         </Border>
 
-        
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 
@@ -80,14 +88,18 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="imgCover" Width="180" Height="280" Stretch="UniformToFill" Margin="5" Grid.Column="0"/>
+                    <Image x:Name="imgCover" Source="{Binding CoverImage}" Width="180" Height="280" Stretch="UniformToFill" Margin="5" Grid.Column="0"/>
 
                     
                     <StackPanel Grid.Column="1">
                         <TextBlock x:Name="txtTitle" FontSize="26" FontWeight="Bold" TextWrapping="Wrap"/>
+                        <TextBlock x:Name="txtBookFrozen" Text=" ЗАМОРОЖЕНО" Foreground="DodgerBlue" FontWeight="Bold" FontSize="20"
+                                   VerticalAlignment="Center" Visibility="Collapsed"/>
                         <TextBlock x:Name="txtAuthor" FontSize="18" Margin="5"/>
                         <TextBlock x:Name="txtRating" FontSize="20" Foreground="Gold" Margin="10"/>
-                        
+                        <TextBlock x:Name="txtFreezeReason" FontSize="14" Foreground="DodgerBlue" Margin="10"
+               Visibility="Collapsed"/>
+
                         <TextBlock Text="Жанры:" FontWeight="SemiBold" Margin="5" FontSize="16"/>
                         <TextBlock x:Name="txtGenres" FontSize="14" TextWrapping="Wrap"/>
 
@@ -100,6 +112,8 @@
                             <Button Content="Добавить в список" Height="30" Width="150" Margin="10" FontSize="16" Background="#38A803" Foreground="White" Click="BtnAddToList_Click"/>
                             <Button Content="Пожаловаться на книгу" Height="30" Width="200" Margin="5" FontSize="16" Background="#C26503" Foreground="White" Click="BtnComplainBook_Click"/>
                             <Button Content="Пожаловаться на автора" Height="30" Width="200" Margin="15" Background="DarkRed" Foreground="White" Click="BtnComplainAuthor_Click" FontSize="16" />
+                            <Button x:Name="btnFreezeBook" Content="Заморозить книгу" Height="30" Width="200" Margin="5" FontSize="16" Background="Purple" Foreground="White" Click="BtnFreezeBook_Click"
+                                    Visibility="{Binding IsAdminVisible, RelativeSource={RelativeSource AncestorType=Page}}"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -139,9 +153,20 @@
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Users.Name}" FontWeight="SemiBold" />
                                         <TextBlock Text="{Binding Rating, StringFormat=' ⭐{0:0.0}'}" Margin="5" Foreground="gold"/>
+                                        <TextBlock Text=" ЗАМОРОЖЕНО" Foreground="DodgerBlue" FontWeight="Bold" 
+                                                   Visibility="{Binding IsFrozen, Converter={StaticResource BoolToVisibility}}"/>
                                     </StackPanel>
                                     <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Margin="5"/>
-                                    <TextBlock Text="{Binding CreatedAt, StringFormat='dd.MM.yyyy HH:mm:ss'}" FontSize="13" Margin="5"/>
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <TextBlock Text="{Binding CreatedAt, StringFormat='dd.MM.yyyy HH:mm:ss'}" FontSize="13" VerticalAlignment="Center"/>
+
+                                        <Button Content="Пожаловаться" Background="DarkRed" Foreground="White" FontSize="13" Width="100" Height="25" Margin="5"
+                                                Click="BtnComplainReview_Click" Tag="{Binding Id}"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding FreezeReazon}" FontSize="12" Foreground="DodgerBlue" Margin="5"
+                                               Visibility="{Binding IsFrozen, Converter={StaticResource BoolToVisibility}}"/>
+                                    <Button Content="Заморозить отзыв" Background="Purple" Foreground="White" FontSize="15" Margin="5"
+                                Visibility="{Binding IsAdminVisible, RelativeSource={RelativeSource AncestorType=Page}}" Click="BtnFreezeReview_Click" Tag="{Binding Id}"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>

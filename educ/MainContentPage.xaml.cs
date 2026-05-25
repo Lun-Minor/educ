@@ -32,7 +32,7 @@ namespace educ
         {
             if (lbBooks != null)
             {
-                lbBooks.ItemsSource = _bookService.GetAllBooks();
+                lbBooks.ItemsSource = _bookService.GetAllBooksForCurrentUser();
             }
         }
 
@@ -61,64 +61,65 @@ namespace educ
         }
 
         private void ApplyFilters()
+{
+    if (lbBooks == null) return;
+
+    string search = tbSearch?.Text?.Trim() ?? "";
+
+    var selectedGenres = new List<int>();
+    if (GenresPanel != null)
+    {
+        foreach (var child in GenresPanel.Children.OfType<CheckBox>())
         {
-            if (lbBooks == null) return;
-
-            
-            string search = "";
-            if (tbSearch != null && tbSearch.Text != null)
+            if (child.IsChecked == true && child.Tag is int genreId)
             {
-                search = tbSearch.Text.Trim();
+                selectedGenres.Add(genreId);
             }
-
-            
-            var selectedGenres = new List<int>();
-            if (GenresPanel != null)
-            {
-                foreach (var child in GenresPanel.Children)
-                {
-                    if (child is CheckBox cb && cb.IsChecked == true && cb.Tag is int genreId)
-                    {
-                        selectedGenres.Add(genreId);
-                    }
-                }
-            }
-
-            
-            List<Books> books = _bookService.GetAllBooks();
-
-            if (!string.IsNullOrWhiteSpace(search))
-            {
-                books = _bookService.SearchBooks(search);
-            }
-
-            else if (selectedGenres.Any())
-            {
-                books = books.Where(b => b.Genres.Any(g => selectedGenres.Contains(g.Id))).ToList();
-            }
-
-            
-            string sortMode = "RatingDesc";
-            if (cmbSort != null)
-            {
-                var sortItem = cmbSort.SelectedItem as ComboBoxItem;
-                if (sortItem != null && sortItem.Tag != null)
-                {
-                    sortMode = sortItem.Tag.ToString();
-                }
-            }
-
-           
-            switch (sortMode)
-            {
-                case "NameAsc": books = books.OrderBy(b => b.Title).ToList(); break;
-                case "NameDesc": books = books.OrderByDescending(b => b.Title).ToList(); break;
-                case "RatingAsc": books = books.OrderBy(b => b.AverageRating).ToList(); break;
-                default: books = books.OrderByDescending(b => b.AverageRating).ToList(); break;
-            }
-
-            lbBooks.ItemsSource = books;
         }
+    }
+
+    List<Books> books;
+
+   
+    if (!string.IsNullOrWhiteSpace(search))
+    {
+        books = _bookService.SearchBooks(search);
+    }
+    else
+    {
+         books = _bookService.GetAllBooksForCurrentUser();
+    }
+
+    // Фильтрация по жанрам
+    if (selectedGenres.Any())
+    {
+        books = books.Where(b => b.Genres.Any(g => selectedGenres.Contains(g.Id))).ToList();
+    }
+
+    string sortMode = "RatingDesc";
+    if (cmbSort?.SelectedItem is ComboBoxItem sortItem && sortItem.Tag != null)
+    {
+        sortMode = sortItem.Tag.ToString();
+    }
+
+    switch (sortMode)
+    {
+        case "NameAsc": 
+            books = books.OrderBy(b => b.Title).ToList(); 
+            break;
+        case "NameDesc": 
+            books = books.OrderByDescending(b => b.Title).ToList(); 
+            break;
+        case "RatingAsc": 
+            books = books.OrderBy(b => b.AverageRating).ToList(); 
+            break;
+        default: 
+            books = books.OrderByDescending(b => b.AverageRating).ToList(); 
+            break;
+    }
+
+    lbBooks.ItemsSource = books;
+}
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e) => ApplyFilters();
         private void cmbSort_SelectionChanged(object sender, SelectionChangedEventArgs e) => ApplyFilters();
@@ -132,10 +133,15 @@ namespace educ
         }
 
         private void BtnCatalog_Click(object sender, RoutedEventArgs e) { }
-        private void BtnReadingLists_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Мои списки — в разработке");
-        private void BtnMyBooks_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Мои книги — в разработке");
-        private void BtnAdmin_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Администрирование — в разработке");
-        private void BtnProfile_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Профиль — в разработке");
+        private void BtnReadingLists_Click(object sender, RoutedEventArgs e)
+        {
+            
+                NavigationService?.Navigate(new ReadingListPage());
+            
+        }
+        private void BtnMyBooks_Click(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new AuthorPage());
+        private void BtnAdmin_Click(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new AdminPage());
+        private void BtnProfile_Click(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new ProfilePage());
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {

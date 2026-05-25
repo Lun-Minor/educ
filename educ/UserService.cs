@@ -57,7 +57,6 @@ namespace educ
                 }
                 else
                 {
-                    MessageBox.Show("SaveChanges вернул 0 изменений.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }      
         }

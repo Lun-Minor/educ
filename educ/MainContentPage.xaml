@@ -106,9 +106,9 @@
                 <ListBox x:Name="lbBooks" BorderThickness="0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border MouseLeftButtonDown="BookCard_MouseLeftButtonDown">
+                            <Border MouseLeftButtonDown="BookCard_MouseLeftButtonDown" Background="White" Margin="8" Width="220" Height="450">
                                 <StackPanel>
-                                    <Image Source="{Binding CoverImage}" Height="250" Stretch="UniformToFill" Margin="5"/>
+                                    <Image Source="{Binding CoverImage}" Height="330" Stretch="UniformToFill" Margin="5"/>
 
                                     <TextBlock Text="{Binding Title}" FontSize="15" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Center" Margin="5"/>
 
